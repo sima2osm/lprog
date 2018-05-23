@@ -8,7 +8,7 @@
 	
 	<xs:complexType name="TInfoIdosos">
 		<xs:sequence>
-			<xs:element name="idoso" type="Tidoso"/>
+			<xs:element name="idoso" type="Tidoso" maxOccurs="500"/>
 		</xs:sequence>
 	</xs:complexType>
 	
@@ -27,7 +27,7 @@
 	<xs:complexType name="Tcontactos">
 		<xs:sequence>
 			<xs:element name="morada" type="xs:string"/>
-			<xs:element name="numero" type="Tnumero"/>
+			<xs:element name="telefone" type="Tnumero"/>
 		</xs:sequence>
 	</xs:complexType>
 	
@@ -77,6 +77,12 @@
 	
 	<xs:complexType name="Ttransportes">
 		<xs:sequence>
+			<xs:element name="transporte" type="Ttransporte" maxOccurs="5"/>
+		</xs:sequence>
+	</xs:complexType>
+	
+	<xs:complexType name="Ttransporte">
+		<xs:sequence>
 			<xs:element name="hora" type="Thora" maxOccurs="3"/>
 		</xs:sequence>
 		<xs:attribute name="name" type="xs:string" use="required"/>
@@ -94,13 +100,13 @@
 	<xs:complexType name="Talergias">
 		<xs:sequence>
 			<xs:element name="comida" type="xs:string" maxOccurs="5"/>
-			<xs:element name="medicamentos" type="xs:string" maxOccurs="5"/>
+			<xs:element name="farmacos" type="xs:string" maxOccurs="5"/>
 		</xs:sequence>
 	</xs:complexType>
 
 	<xs:complexType name="Tdoencas">
 		<xs:sequence>
-			<xs:element name="doencas" type="xs:string" maxOccurs="5"/>
+			<xs:element name="doenca" type="xs:string" maxOccurs="5"/>
 		</xs:sequence>
 	</xs:complexType>
 	
@@ -122,7 +128,7 @@
 	</xs:simpleType>
 	
 	<xs:simpleType name="Thora">
-		<xs:restriction base="xs:time">
+		<xs:restriction base="xs:string">
 			<xs:pattern value="(0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]"/>
 		</xs:restriction>
 	</xs:simpleType>

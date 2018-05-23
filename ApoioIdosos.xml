@@ -3,7 +3,7 @@
 	<idoso name="Bruno Santos">
 		<contactos>
 			<morada>Rua do Arsenal</morada>
-			<numero>919247932</numero>
+			<telefone>919247932</telefone>
 		</contactos>
 		<familia>
 			<familiar>
@@ -63,7 +63,7 @@
 		<alergias>
 			<comida>Maca</comida>
 			<comida>Couve-Flor</comida>
-			<medicamentos>Brufen</medicamentos>
+			<farmacos>Brufen</farmacos>
 		</alergias>
 		<doencas>
 			<doenca>Amigdalite</doenca>
@@ -73,7 +73,7 @@
 	<idoso name="Igor Machado">
 		<contactos>
 			<morada>Rua do Vinhal</morada>
-			<numero>914238092</numero>
+			<telefone>914238092</telefone>
 		</contactos>
 		<familia>
 			<familiar>
@@ -124,7 +124,7 @@
 		</calendario>
 		<alergias>
 			<comida>peru</comida>
-			<medicamentos>viagra</medicamentos>
+			<farmacos>viagra</farmacos>
 		</alergias>
 		<doencas>
 			<doenca>AHDS</doenca>
