@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<infoIdosos>
+	<idoso name="Bruno Santos">
+		<contactos>
+			<morada>Rua do Arsenal</morada>
+			<numero>919247932</numero>
+		</contactos>
+		<familia>
+			<familiar>
+				<numero>913456328</numero>
+				<relacao>filho</relacao>
+			</familiar>
+			<familiar>
+				<numero>917654328</numero>
+				<relacao>irmao</relacao>
+			</familiar>
+			<familiar>
+				<numero>937654527</numero>
+				<relacao>filho</relacao>
+			</familiar>
+		</familia>
+		<apoios>
+			<refeicoes>
+				<pequenoalmoco>pequenoalmoco1</pequenoalmoco>
+				<pequenoalmoco>pequenoalmoco2</pequenoalmoco>
+				<pequenoalmoco>pequenoalmoco3</pequenoalmoco>
+				<pequenoalmoco>pequenoalmoco4</pequenoalmoco>
+				<almoco>almoco1</almoco>
+				<almoco>almoco2</almoco>
+				<almoco>almoco3</almoco>
+				<lanche>lanche1</lanche>
+				<lanche>lanche2</lanche>
+				<jantar>jantar1</jantar>
+				<jantar>jantar2</jantar>
+				<jantar>jantar3</jantar>
+			</refeicoes>
+			<medicamentos>
+				<medicamento name="Fabrazyme">
+					<tempoaviso>30</tempoaviso> <!-- em minutos --> 
+					<horatoma>14:00</horatoma>
+				</medicamento>
+				<medicamento name="Abavil">
+					<tempoaviso>5</tempoaviso> <!-- em minutos --> 
+					<horatoma>17:00</horatoma>
+				</medicamento>
+			</medicamentos>
+			<transportes>
+				<transporte name="carro">
+					<hora>12:45</hora>
+					<hora>13:45</hora>
+				</transporte>
+				<transporte name ="mota">
+					<hora>20:30</hora> 
+				</transporte>
+			</transportes>
+		</apoios>
+		<calendario>
+		    <horapequenoalmoco>08:00</horapequenoalmoco>
+			<horaalmoco>12:30</horaalmoco>
+			<horalanche>16:30</horalanche>
+			<horajantar>19:30</horajantar>	
+		</calendario>
+		<alergias>
+			<comida>Maca</comida>
+			<comida>Couve-Flor</comida>
+			<medicamentos>Brufen</medicamentos>
+		</alergias>
+		<doencas>
+			<doenca>Amigdalite</doenca>
+			<doenca>Apneia do sono</doenca>
+		</doencas>
+	</idoso>
+	<idoso name="Igor Machado">
+		<contactos>
+			<morada>Rua do Vinhal</morada>
+			<numero>914238092</numero>
+		</contactos>
+		<familia>
+			<familiar>
+				<numero>923689028</numero>
+				<relacao>neto</relacao>
+			</familiar>
+		</familia>
+		<apoios>
+			<refeicoes>
+				<pequenoalmoco>pequenoalmoco1</pequenoalmoco>
+				<pequenoalmoco>pequenoalmoco2</pequenoalmoco>
+				<pequenoalmoco>pequenoalmoco3</pequenoalmoco>
+				<pequenoalmoco>pequenoalmoco4</pequenoalmoco>
+				<almoco>almoco1</almoco>
+				<almoco>almoco2</almoco>
+				<almoco>almoco3</almoco>
+				<lanche>lanche1</lanche>
+				<lanche>lanche2</lanche>
+				<jantar>jantar1</jantar>
+				<jantar>jantar2</jantar>
+				<jantar>jantar3</jantar>
+			</refeicoes>
+			<medicamentos>
+				<medicamento name="abelcet">
+					<tempoaviso>5</tempoaviso> <!-- em minutos --> 
+					<horatoma>17:00</horatoma>
+				</medicamento>
+				<medicamento name="kabiven">
+					<tempoaviso>30</tempoaviso> <!-- em minutos --> 
+					<horatoma>19:00</horatoma>
+				</medicamento>
+			</medicamentos>
+			<transportes>
+				<transporte name="carro">
+					<hora>12:45</hora>
+					<hora>13:45</hora>
+				</transporte>
+				<transporte name ="autocarro">
+					<hora>20:30</hora> 
+				</transporte>
+			</transportes>
+		</apoios>
+		<calendario>
+		    <horapequenoalmoco>08:00</horapequenoalmoco>
+			<horaalmoco>12:30</horaalmoco>
+			<horalanche>16:30</horalanche>
+			<horajantar>19:30</horajantar>	
+		</calendario>
+		<alergias>
+			<comida>peru</comida>
+			<medicamentos>viagra</medicamentos>
+		</alergias>
+		<doencas>
+			<doenca>AHDS</doenca>
+			<doenca>Quisto osseo unicameral</doenca>
+			<doenca>Angioma serpiginoso</doenca>
+		</doencas>
+	</idoso>
+</infoIdosos>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
