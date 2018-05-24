@@ -8,18 +8,18 @@
 	
 	<xs:complexType name="TInfoIdosos">
 		<xs:sequence>
-			<xs:element name="idoso" type="Tidoso" maxOccurs="500"/>
+			<xs:element name="idoso" type="Tidoso" maxOccurs="unbounded"/>
 		</xs:sequence>
 	</xs:complexType>
 	
 	<xs:complexType name="Tidoso">
 		<xs:sequence>
 			<xs:element name="contactos" type="Tcontactos"/>
-			<xs:element name="familia" type="Tfamilia"/>
+			<xs:element name="familia" type="Tfamilia" minOccurs="0"/>
 			<xs:element name="apoios" type="Tapoios"/>
-			<xs:element name="calendario" type="Tcalendario"/>
-			<xs:element name="alergias" type="Talergias"/>
-			<xs:element name="doencas" type="Tdoencas"/>
+			<xs:element name="calendario" type="Tcalendario" minOccurs="0"/>
+			<xs:element name="alergias" type="Talergias" minOccurs="0"/>
+			<xs:element name="doencas" type="Tdoencas" minOccurs="0"/>
 		</xs:sequence>
 		<xs:attribute name="name" type="xs:string" use="required"/>
 	</xs:complexType>
@@ -33,7 +33,7 @@
 	
 	<xs:complexType name="Tfamilia">
 		<xs:sequence>
-			<xs:element name="familiar" type="Tfamiliar" maxOccurs="3"/>
+			<xs:element name="familiar" type="Tfamiliar" minOccurs="0" maxOccurs="unbounded"/>
 		</xs:sequence>
 	</xs:complexType>
 	
@@ -46,24 +46,24 @@
 	
 	<xs:complexType name="Tapoios">
 		<xs:sequence>
-			<xs:element name="refeicoes" type="Trefeicoes"/>
-			<xs:element name="medicamentos" type="Tmedicamentos"/>
-			<xs:element name="transportes" type="Ttransportes"/>
+			<xs:element name="refeicoes" type="Trefeicoes" minOccurs="0"/>
+			<xs:element name="medicamentos" type="Tmedicamentos" minOccurs="0"/>
+			<xs:element name="transportes" type="Ttransportes" minOccurs="0"/>
 		</xs:sequence>
 	</xs:complexType>
 	
 	<xs:complexType name="Trefeicoes">
 		<xs:sequence>
-			<xs:element name="pequenoalmoco" type="xs:string" maxOccurs="5"/>
-			<xs:element name="almoco" type="xs:string" maxOccurs="5"/>
-			<xs:element name="lanche" type="xs:string" maxOccurs="5"/>
-			<xs:element name="jantar" type="xs:string" maxOccurs="5"/>
+			<xs:element name="pequenoalmoco" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="almoco" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="lanche" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="jantar" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
 		</xs:sequence>
 	</xs:complexType>
 	
 	<xs:complexType name="Tmedicamentos">
 		<xs:sequence>
-			<xs:element name="medicamento" type="Tmedicamento" maxOccurs="5"/>
+			<xs:element name="medicamento" type="Tmedicamento" maxOccurs="unbounded"/>
 		</xs:sequence>
 	</xs:complexType>
 	
@@ -77,36 +77,36 @@
 	
 	<xs:complexType name="Ttransportes">
 		<xs:sequence>
-			<xs:element name="transporte" type="Ttransporte" maxOccurs="5"/>
+			<xs:element name="transporte" type="Ttransporte" maxOccurs="unbounded"/>
 		</xs:sequence>
 	</xs:complexType>
 	
 	<xs:complexType name="Ttransporte">
 		<xs:sequence>
-			<xs:element name="hora" type="Thora" maxOccurs="3"/>
+			<xs:element name="hora" type="Thora" maxOccurs="unbounded"/>
 		</xs:sequence>
 		<xs:attribute name="name" type="xs:string" use="required"/>
 	</xs:complexType>
 	
 	<xs:complexType name="Tcalendario">
 		<xs:sequence>
-			<xs:element name="horapequenoalmoco" type="Thora"/>
-			<xs:element name="horaalmoco" type="Thora"/>
-			<xs:element name="horalanche" type="Thora"/>
-			<xs:element name="horajantar" type="Thora"/>
+			<xs:element name="horapequenoalmoco" type="Thora" minOccurs="0"/>
+			<xs:element name="horaalmoco" type="Thora" minOccurs="0"/>
+			<xs:element name="horalanche" type="Thora" minOccurs="0"/>
+			<xs:element name="horajantar" type="Thora" minOccurs="0"/>
 		</xs:sequence>
 	</xs:complexType>
 	
 	<xs:complexType name="Talergias">
 		<xs:sequence>
-			<xs:element name="comida" type="xs:string" maxOccurs="5"/>
-			<xs:element name="farmacos" type="xs:string" maxOccurs="5"/>
+			<xs:element name="comida" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="farmacos" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
 		</xs:sequence>
 	</xs:complexType>
 
 	<xs:complexType name="Tdoencas">
 		<xs:sequence>
-			<xs:element name="doenca" type="xs:string" maxOccurs="5"/>
+			<xs:element name="doenca" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
 		</xs:sequence>
 	</xs:complexType>
 	
