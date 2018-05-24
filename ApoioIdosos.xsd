@@ -1,11 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xs:schema  
-           xmlns:xs="http://www.w3.org/2001/XMLSchema"
-           
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           xmlns:ap="http://www.dei.isep.ipp.pt/apoios"
+           xmlns:cal="http://www.dei.isep.ipp.pt/calendariohoras"
+           targetNamespace="http://www.dei.isep.ipp.pt/apoioidosos"
            elementFormDefault="qualified">
 
-	<xs:element name="infoIdosos" type="TInfoIdosos"/>
-	
+        <xs:import schemaLocation="ApoioIdososApoio.xsd"
+                   namespace="http://www.dei.isep.ipp.pt/apoios"/>
+        <xs:import schemaLocation="ApoioIdososCalendario.xsd"
+                   namespace="http://www.dei.isep.ipp.pt/calendariohoras"/>
+    
+        <xs:element name="apoioIdosos" type="TapoioIdosos"/>
+        
+        <xs:complexType name="TapoioIdosos">
+            <xs:sequence>
+                <xs:element name="infoIdosos" type="TInfoIdosos"/>
+                <xs:element name="apoios" type="ap:Tapoios"/>
+                <xs:element name="calendario" type="cal:Tcalendario"/>
+            </xs:sequence>
+        </xs:complexType>
+        
 	<xs:complexType name="TInfoIdosos">
 		<xs:sequence>
 			<xs:element name="idoso" type="Tidoso" maxOccurs="unbounded"/>
@@ -16,8 +30,7 @@
 		<xs:sequence>
 			<xs:element name="contactos" type="Tcontactos"/>
 			<xs:element name="familia" type="Tfamilia" minOccurs="0"/>
-			<xs:element name="apoios" type="Tapoios"/>
-			<xs:element name="calendario" type="Tcalendario" minOccurs="0"/>
+			<xs:element name="medicamentos" type="Tmedicamentos" minOccurs="0"/>
 			<xs:element name="alergias" type="Talergias" minOccurs="0"/>
 			<xs:element name="doencas" type="Tdoencas" minOccurs="0"/>
 		</xs:sequence>
@@ -44,23 +57,6 @@
 		</xs:sequence>
 	</xs:complexType>
 	
-	<xs:complexType name="Tapoios">
-		<xs:sequence>
-			<xs:element name="refeicoes" type="Trefeicoes" minOccurs="0"/>
-			<xs:element name="medicamentos" type="Tmedicamentos" minOccurs="0"/>
-			<xs:element name="transportes" type="Ttransportes" minOccurs="0"/>
-		</xs:sequence>
-	</xs:complexType>
-	
-	<xs:complexType name="Trefeicoes">
-		<xs:sequence>
-			<xs:element name="pequenoalmoco" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
-			<xs:element name="almoco" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
-			<xs:element name="lanche" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
-			<xs:element name="jantar" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
-		</xs:sequence>
-	</xs:complexType>
-	
 	<xs:complexType name="Tmedicamentos">
 		<xs:sequence>
 			<xs:element name="medicamento" type="Tmedicamento" maxOccurs="unbounded"/>
@@ -75,62 +71,40 @@
 		<xs:attribute name="name" type="xs:string" use="required"/>
 	</xs:complexType>
 	
-	<xs:complexType name="Ttransportes">
-		<xs:sequence>
-			<xs:element name="transporte" type="Ttransporte" maxOccurs="unbounded"/>
-		</xs:sequence>
-	</xs:complexType>
-	
-	<xs:complexType name="Ttransporte">
-		<xs:sequence>
-			<xs:element name="hora" type="Thora" maxOccurs="unbounded"/>
-		</xs:sequence>
-		<xs:attribute name="name" type="xs:string" use="required"/>
-	</xs:complexType>
-	
-	<xs:complexType name="Tcalendario">
-		<xs:sequence>
-			<xs:element name="horapequenoalmoco" type="Thora" minOccurs="0"/>
-			<xs:element name="horaalmoco" type="Thora" minOccurs="0"/>
-			<xs:element name="horalanche" type="Thora" minOccurs="0"/>
-			<xs:element name="horajantar" type="Thora" minOccurs="0"/>
-		</xs:sequence>
-	</xs:complexType>
-	
-	<xs:complexType name="Talergias">
-		<xs:sequence>
-			<xs:element name="comida" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
-			<xs:element name="farmacos" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
-		</xs:sequence>
-	</xs:complexType>
+    <xs:complexType name="Talergias">
+        <xs:sequence>
+            <xs:element name="comida" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
+            <xs:element name="farmacos" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
 
-	<xs:complexType name="Tdoencas">
-		<xs:sequence>
-			<xs:element name="doenca" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
-		</xs:sequence>
-	</xs:complexType>
+    <xs:complexType name="Tdoencas">
+        <xs:sequence>
+            <xs:element name="doenca" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
 	
-	<xs:simpleType name="Tnumero">
-		<xs:restriction base="xs:int">
-			<xs:pattern value="(9(1|2|3|6)[0-9]{7})|((2|3)[0-9]{8})"/>
-		</xs:restriction>
-	</xs:simpleType>
+    <xs:simpleType name="Tnumero">
+        <xs:restriction base="xs:int">
+            <xs:pattern value="(9(1|2|3|6)[0-9]{7})|((2|3)[0-9]{8})"/>
+        </xs:restriction>
+    </xs:simpleType>
 	
-	<xs:simpleType name="Trelacao">
-		<xs:restriction base="xs:string">
-			<xs:enumeration value="mae"/>
-			<xs:enumeration value="pai"/>
-			<xs:enumeration value="irmao"/>
-			<xs:enumeration value="filho"/>
-			<xs:enumeration value="neto"/>
-			<xs:enumeration value="outro"/>
-		</xs:restriction>
-	</xs:simpleType>
+    <xs:simpleType name="Trelacao">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="mae"/>
+            <xs:enumeration value="pai"/>
+            <xs:enumeration value="irmao"/>
+            <xs:enumeration value="filho"/>
+            <xs:enumeration value="neto"/>
+            <xs:enumeration value="outro"/>
+        </xs:restriction>
+    </xs:simpleType>
 	
-	<xs:simpleType name="Thora">
-		<xs:restriction base="xs:string">
-			<xs:pattern value="(0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]"/>
-		</xs:restriction>
-	</xs:simpleType>
+    <xs:simpleType name="Thora">
+        <xs:restriction base="xs:string">
+            <xs:pattern value="(0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]"/>
+        </xs:restriction>
+    </xs:simpleType>
 	
 </xs:schema>

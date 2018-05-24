@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           targetNamespace="http://www.dei.isep.ipp.pt/calendariohoras"
+           elementFormDefault="qualified">
+
+	<xs:complexType name="Tcalendario">
+		<xs:sequence>
+			<xs:element name="transporte" type="Ttransporte" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+        
+        <xs:complexType name="Ttransporte">
+            <xs:sequence>
+                <xs:element name="hora" type="Thora" maxOccurs="unbounded"/>
+            </xs:sequence>
+            <xs:attribute name="name" type="xs:string" use="required"/>
+        </xs:complexType>
+	
+	<xs:simpleType name="Thora">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="(0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]"/>
+		</xs:restriction>
+	</xs:simpleType>
+	
+</xs:schema>
