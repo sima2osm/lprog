@@ -1,111 +1,153 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <xsl:stylesheet version="1.0"
-                xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+                xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+                xmlns:ns="http://www.dei.isep.ipp.pt/apoioidosos">
 
-    
-    <xsl:template match="/infoIdosos">
+    <xsl:template match="/ns:apoioIdosos">
         <html>
             <head>
                 <title>XML to HTML</title>
             </head>
             <body>
-                <xsl:apply-templates select="idoso"/>
+                aaaaa
+                <xsl:apply-templates select="ns:infoIdosos"/>
+                <xsl:apply-templates select="ns:apoios"/>
+                <xsl:apply-templates select="ns:calendario"/>
             </body>
         </html>
     </xsl:template>
     
-    <xsl:template match="idoso">
-        <h1>
+    <xsl:template match="ns:infoIdosos">
+        <h1>Informacao dos idosos:</h1>
+        <xsl:for-each select="ns:idoso">
+            <xsl:apply-templates select="."/>
+            <br></br>
+        </xsl:for-each>
+    </xsl:template>
+    
+    <xsl:template match="ns:idoso">
+        <h2>
             <xsl:value-of select="@name"/>
-        </h1>
-        <h2>Contactos:</h2>
-        <xsl:apply-templates select="contactos"/>
-        <xsl:if test="familia/familiar">
-            <xsl:apply-templates select="familia"/>
+        </h2>
+        <h3>Contactos:</h3>
+        <xsl:apply-templates select="ns:contactos"/>
+        <hr></hr>
+        <xsl:if test="ns:familia/ns:familiar">
+            <xsl:apply-templates select="ns:familia"/>
         </xsl:if>
-        <xsl:apply-templates select="apoios"/>
-        <xsl:if test="calendario">
-            <xsl:apply-templates select="calendario"/>
+        <xsl:if test="ns:medicamentos">
+            <xsl:apply-templates select="ns:medicamentos"/>
         </xsl:if>
-        <xsl:if test="alergias/comida | alergias/farmacos">
-            <xsl:apply-templates select="alergias"/>
+        <xsl:if test="ns:alergias/ns:comida | ns:alergias/ns:farmacos">
+            <xsl:apply-templates select="ns:alergias"/>
         </xsl:if>
-        <xsl:if test="doencas/doenca">
-            <xsl:apply-templates select="doencas"/>
+        <xsl:if test="ns:doencas/ns:doenca">
+            <xsl:apply-templates select="ns:doencas"/>
         </xsl:if>
         <br></br>
+    </xsl:template>
+    
+    <xsl:template match="ns:contactos">
+        Morada: <xsl:value-of select="ns:morada"/>
         <br></br>
-        <br></br>
-        <br></br>
-        <br></br>
-        <br></br>
-        <br></br>
-        <br></br>
+        Telefone: <xsl:value-of select="ns:telefone"/>
         <br></br>
         <br></br>
     </xsl:template>
     
-    <xsl:template match="contactos">
-        Morada: <xsl:value-of select="morada"/>
-        <br></br>
-        Telefone: <xsl:value-of select="telefone"/>
-        <br></br>
-        <br></br>
+    <xsl:template match="ns:familia">
+        <h3>Familiares:</h3>
+        <xsl:apply-templates select="ns:familiar"/>
     </xsl:template>
     
-    <xsl:template match="familia">
-        <h2>Familiares:</h2>
-        <xsl:apply-templates select="familiar"/>
+    <xsl:template match="ns:familiar">
+        Numero: <xsl:value-of select="ns:numero"/>
+        <br></br>
+        Relacao: <xsl:value-of select="ns:relacao"/>
+        <hr></hr>
     </xsl:template>
     
-    <xsl:template match="familiar">
-        Numero: <xsl:value-of select="numero"/>
-        <br></br>
-        Relacao: <xsl:value-of select="relacao"/>
-        <br></br>
-        <br></br>
+    <xsl:template match="ns:medicamentos">
+        <h3>Medicamentos:</h3>
+        <xsl:apply-templates select="ns:medicamento"/>
     </xsl:template>
     
-    <xsl:template match="apoios">
-        <h2>Apoios:</h2>
-        <xsl:if test="refeicoes">
-            <xsl:apply-templates select="refeicoes"/>
+    <xsl:template match="ns:medicamento">
+        <h4>
+            <xsl:value-of select="@name"/>
+        </h4>
+        Tempo de aviso: <xsl:value-of select="ns:tempoaviso"/> minutos
+        <br></br>
+        Hora de toma: <xsl:value-of select="ns:horatoma"/>
+        <hr></hr>
+    </xsl:template>
+    
+    <xsl:template match="ns:alergias">
+        <h3>Alergias:</h3>
+        <xsl:if test="ns:comida">
+            <h4>Comida:</h4>
+            <xsl:for-each select="ns:comida">
+                <xsl:value-of select="."/>
+                <br></br>
+            </xsl:for-each>
         </xsl:if>
-        <xsl:if test="medicamentos/medicamento">
-            <xsl:apply-templates select="medicamentos"/>
+        <xsl:if test="ns:farmacos">
+            <h4>Farmacos:</h4>
+            <xsl:for-each select="ns:farmacos">
+                <xsl:value-of select="."/>
+                <br></br>
+            </xsl:for-each>
+        </xsl:if>
+    </xsl:template>
+    
+    <xsl:template match="ns:doencas">
+        <h3>Doencas:</h3>
+        <xsl:for-each select="ns:doenca">
+            <xsl:value-of select="."/>
+            <br></br>
+        </xsl:for-each>
+    </xsl:template>
+    
+    <xsl:template match="ns:apoios">
+        <h3>Apoios:</h3>
+        <xsl:if test="ns:refeicoes">
+            <xsl:apply-templates select="ns:refeicoes"/>
+        </xsl:if>
+        <xsl:if test="ns:medicamentos/ns:medicamento">
+            <xsl:apply-templates select="ns:medicamentos"/>
         </xsl:if>
         <xsl:if test="transportes/transporte">
             <xsl:apply-templates select="transportes"/>
         </xsl:if>
     </xsl:template>
     
-    <xsl:template match="refeicoes">
-        <h3>Refeicoes:</h3>
-        <xsl:if test="pequenoalmoco">
-            <h4>Pequeno(s) almoco(s):</h4>
-            <xsl:for-each select="pequenoalmoco">
+    <xsl:template match="ns:refeicoes">
+        <h4>Refeicoes:</h4>
+        <xsl:if test="ns:pequenoalmoco">
+            <h5>Pequeno(s) almoco(s):</h5>
+            <xsl:for-each select="ns:pequenoalmoco">
                 <xsl:value-of select="."/>
                 <br></br>
             </xsl:for-each>
         </xsl:if>
-        <xsl:if test="almoco">
-            <h4>Almoco(s):</h4>
-            <xsl:for-each select="almoco">
+        <xsl:if test="ns:almoco">
+            <h5>Almoco(s):</h5>
+            <xsl:for-each select="ns:almoco">
                 <xsl:value-of select="."/>
                 <br></br>
             </xsl:for-each>
         </xsl:if>
-        <xsl:if test="lanche">
-            <h4>Lanche(s):</h4>
-            <xsl:for-each select="lanche">
+        <xsl:if test="ns:lanche">
+            <h5>Lanche(s):</h5>
+            <xsl:for-each select="ns:lanche">
                 <xsl:value-of select="."/>
                 <br></br>
             </xsl:for-each>
         </xsl:if>
-        <xsl:if test="jantar">
-            <h4>Jantar(es):</h4>
-            <xsl:for-each select="jantar">
+        <xsl:if test="ns:jantar">
+            <h5>Jantar(es):</h5>
+            <xsl:for-each select="ns:jantar">
                 <xsl:value-of select="."/>
                 <br></br>
             </xsl:for-each>
@@ -113,81 +155,40 @@
         <br></br>
     </xsl:template>
     
-    <xsl:template match="medicamentos">
-        <h3>Medicamentos:</h3>
-        <xsl:apply-templates select="medicamento"/>
+    
+    <xsl:template match="ns:transportes">
+        <h4>Transportes:</h4>
+        <xsl:apply-templates select="ns:transporte"/>
     </xsl:template>
     
-    <xsl:template match="medicamento">
-        <h4>
+    <xsl:template match="ns:transporte">
+        <h5>
             <xsl:value-of select="@name"/>
-        </h4>
-        Tempo de aviso: <xsl:value-of select="tempoaviso"/> minutos
-        <br></br>
-        Hora de toma: <xsl:value-of select="horatoma"/>
-        <br></br>
-    </xsl:template>
-    
-    <xsl:template match="transportes">
-        <h3>Transportes:</h3>
-        <xsl:apply-templates select="transporte"/>
-    </xsl:template>
-    
-    <xsl:template match="transporte">
-        <h4>
-            <xsl:value-of select="@name"/>
-        </h4>
-        <xsl:for-each select="hora">
+        </h5>
+        <xsl:for-each select="ns:hora">
             Hora: <xsl:value-of select="."/>
             <br></br>
         </xsl:for-each>
     </xsl:template>
     
-    <xsl:template match="calendario">
-        <h2>Calendario:</h2>
-        <xsl:if test="horapequenoalmoco">
-            Hora pequeno almoco:<xsl:value-of select="horapequenoalmoco"/>
+    <xsl:template match="ns:calendario">
+        <h3>Calendario:</h3>
+        <xsl:if test="ns:horapequenoalmoco">
+            Hora pequeno almoco:<xsl:value-of select="ns:horapequenoalmoco"/>
             <br></br>
         </xsl:if>
-        <xsl:if test="horaalmoco">
-            Hora almoco:<xsl:value-of select="horaalmoco"/>
+        <xsl:if test="ns:horaalmoco">
+            Hora almoco:<xsl:value-of select="ns:horaalmoco"/>
             <br></br>
         </xsl:if>
-        <xsl:if test="horalanche">
-            Hora lanche:<xsl:value-of select="horalanche"/>
+        <xsl:if test="ns:horalanche">
+            Hora lanche:<xsl:value-of select="ns:horalanche"/>
             <br></br>
         </xsl:if>
-        <xsl:if test="horajantar">
-            Hora jantar:<xsl:value-of select="horajantar"/>
+        <xsl:if test="ns:horajantar">
+            Hora jantar:<xsl:value-of select="ns:horajantar"/>
             <br></br>
         </xsl:if>
         <br></br>
     </xsl:template>
-    
-    <xsl:template match="alergias">
-        <h2>Alergias:</h2>
-        <xsl:if test="comida">
-            <h3>Comida:</h3>
-            <xsl:for-each select="comida">
-                <xsl:value-of select="."/>
-                <br></br>
-            </xsl:for-each>
-        </xsl:if>
-        <xsl:if test="farmacos">
-            <h3>Farmacos:</h3>
-            <xsl:for-each select="farmacos">
-                <xsl:value-of select="."/>
-                <br></br>
-            </xsl:for-each>
-        </xsl:if>
-    </xsl:template>
-    
-    <xsl:template match="doencas">
-        <h2>Doencas:</h2>
-        <xsl:for-each select="doenca">
-            <xsl:value-of select="."/>
-            <br></br>
-        </xsl:for-each>
-    </xsl:template>
-    
 </xsl:stylesheet>
