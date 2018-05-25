@@ -7,10 +7,8 @@
     <xsl:output method="text" indent="yes"/>
     
     <xsl:template match="/ns:apoioIdosos">
-        XML to HTML 2
+        XML to TXT 2
         <xsl:apply-templates select="ns:infoIdosos"/>
-        <xsl:apply-templates select="ns:apoios"/>
-        <xsl:apply-templates select="ns:calendario"/>
     </xsl:template>
     
     <xsl:template match="ns:infoIdosos">
@@ -101,76 +99,5 @@
             <xsl:value-of select="concat('                    ', .)"/>
             <xsl:text>&#xA;</xsl:text>
         </xsl:for-each>
-    </xsl:template>
-    
-    <xsl:template match="ns:apoios">
-        Apoios:
-        <xsl:apply-templates select="ns:refeicoes"/>
-        <xsl:apply-templates select="//ns:apoios/ns:medicamentos"/>
-        <xsl:apply-templates select="ns:transportes"/>
-    </xsl:template>
-    
-    <xsl:template match="ns:refeicoes">
-            Refeicoes:
-        
-                Pequeno(s) almoco(s):
-        <xsl:text>&#xA;</xsl:text>
-        <xsl:for-each select="ns:pequenoalmoco">
-            <xsl:value-of select="concat('                    ', .)"/>
-            <xsl:text>&#xA;</xsl:text>
-        </xsl:for-each>
-                Almoco(s):
-        <xsl:text>&#xA;</xsl:text>
-        <xsl:for-each select="ns:almoco">
-            <xsl:value-of select="concat('                    ', .)"/>
-            <xsl:text>&#xA;</xsl:text>
-        </xsl:for-each>
-                Lanche(s):
-        <xsl:text>&#xA;</xsl:text>
-        <xsl:for-each select="ns:lanche">
-            <xsl:value-of select="concat('                    ', .)"/>
-            <xsl:text>&#xA;</xsl:text>
-        </xsl:for-each>
-                Jantar(es):
-        <xsl:text>&#xA;</xsl:text>
-        <xsl:for-each select="ns:jantar">
-            <xsl:value-of select="concat('                    ', .)"/>
-            <xsl:text>&#xA;</xsl:text>
-        </xsl:for-each>
-    </xsl:template>
-    
-    <xsl:template match="//ns:apoios/ns:medicamentos">
-            Medicamentos:
-        <xsl:text>&#xA;</xsl:text>
-        <xsl:for-each select="ns:medicamento">
-            <xsl:value-of select="concat('                ', .)"/>
-            
-            <xsl:text>&#xA;</xsl:text>
-        </xsl:for-each>
-    </xsl:template>
-    
-    <xsl:template match="ns:transportes">
-            Transportes:
-        <xsl:text>&#xA;</xsl:text>
-        <xsl:for-each select="ns:transporte">
-            <xsl:value-of select="concat('                ', .)"/>
-            <xsl:text>&#xA;</xsl:text>
-        </xsl:for-each>
-    </xsl:template>
-    
-    <xsl:template match="ns:calendario">
-        Calendario de transportes:
-        <xsl:text>&#xA;</xsl:text>
-        <xsl:apply-templates select="ns:transporte"/>
-    </xsl:template>
-    
-    <xsl:template match="ns:transporte">
-        <xsl:value-of select="concat('            ', @name)"/>
-        <xsl:text>&#xA;</xsl:text>
-        <xsl:for-each select="ns:hora">
-            <xsl:value-of select="concat('                ', .)"/>
-            <xsl:text>&#xA;</xsl:text>
-        </xsl:for-each>
-        <xsl:text>&#xA;</xsl:text>
     </xsl:template>
 </xsl:stylesheet>
